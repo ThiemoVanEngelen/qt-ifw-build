@@ -19,7 +19,7 @@ env:
     - SIGNING_PASSWORD=
     - SIGNING_IDENTITY=
     - SIGNING_FLAGS=
-    - IFW_OPENSSL_DIR=/usr/local/Cellar/openssl/1.0.2t
+    - IFW_OPENSSL_DIR=/usr/local/opt/openssl
     - HOMEBREW_NO_AUTO_UPDATE=1
 
 before_install:
