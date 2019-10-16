@@ -26,4 +26,6 @@ before_install:
   - brew install openssl
 
 script:
+  - mkdir installers
+  - export LOCAL_INSTALLER_DIR=$PWD/installers
   - python qtsdk/packaging-tools/build_wrapper.py -c ifw -l $LICENSE -b $BUILD_NUMBER -e $TARGET_ENV
