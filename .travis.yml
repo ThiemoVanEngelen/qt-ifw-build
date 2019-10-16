@@ -1,0 +1,28 @@
+language: generic
+os: osx
+osx_image: xcode10.3
+
+env:
+  global:
+    - LOCAL_MODE=1
+    - LICENSE=opensource
+    - BUILD_NUMBER=0
+    - TARGET_ENV=mac-clang-10.11-x64
+    - VERSION=v5.13.1-victron
+    - IFW_GIT_URL=https://github.com/qtproject/installer-framework.git
+    - IFW_GIT_VERSION=3.1
+    - IFW_QT_SRC_PKG=http://download.qt.io/official_releases/qt/5.9/5.9.8/single/qt-everywhere-opensource-src-5.9.8.tar.xz
+    - IFW_STATIC_QT_BIN_PKG=
+    - IFW_DYNAMIC_QT_BIN_PKG=
+    - ENABLE_TESTS=false
+    - SIGNING_SERVER=
+    - SIGNING_PASSWORD=
+    - SIGNING_IDENTITY=
+    - SIGNING_FLAGS=
+    - IFW_OPENSSL_DIR=/usr/local/Cellar/openssl/1.0.2t
+
+before_install:
+  - brew install openssl
+
+script:
+  - python qtsdk/packaging-tools/build_wrapper.py -c ifw -l $LICENSE -b $BUILD_NUMBER -e $TARGET_ENV
