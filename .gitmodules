@@ -1,0 +1,3 @@
+[submodule "qtsdk"]
+	path = qtsdk
+	url = https://code.qt.io/qtsdk/qtsdk.git
