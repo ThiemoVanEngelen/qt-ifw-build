@@ -1,13 +1,15 @@
 language: generic
-os: osx
-osx_image: xcode10.3
-
+jobs:
+  include:
+    - os: linux
+      dist: trusty
+    - os: osx
+      osx_image: xcode10.3
 env:
   global:
     - LOCAL_MODE=1
     - LICENSE=opensource
     - BUILD_NUMBER=0
-    - TARGET_ENV=mac-clang-10.11-x64
     - VERSION=v5.13.1-victron
     - IFW_GIT_URL=https://github.com/qtproject/installer-framework.git
     - IFW_GIT_VERSION=3.1
@@ -19,14 +21,16 @@ env:
     - SIGNING_PASSWORD=
     - SIGNING_IDENTITY=
     - SIGNING_FLAGS=
-    - IFW_OPENSSL_DIR=/usr/local/opt/openssl
     - HOMEBREW_NO_AUTO_UPDATE=1
     - IFW_QT_EXTRA_CONFIGURE_OPTIONS="-silent"
 
 before_install:
-  - brew install openssl
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install openssl ; fi
 
 script:
   - mkdir installers
   - export LOCAL_INSTALLER_DIR=$PWD/installers
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then export TARGET_ENV=mac-clang-10.11-x64 ; fi
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then IFW_OPENSSL_DIR=/usr/local/opt/openssl ; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then export TARGET_ENV=linux-g++ ; fi
   - python qtsdk/packaging-tools/build_wrapper.py -c ifw -l $LICENSE -b $BUILD_NUMBER -e $TARGET_ENV
