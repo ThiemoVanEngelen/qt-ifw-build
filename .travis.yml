@@ -21,6 +21,7 @@ env:
     - SIGNING_FLAGS=
     - IFW_OPENSSL_DIR=/usr/local/opt/openssl
     - HOMEBREW_NO_AUTO_UPDATE=1
+    - IFW_QT_EXTRA_CONFIGURE_OPTIONS="-silent"
 
 before_install:
   - brew install openssl
