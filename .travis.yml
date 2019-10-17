@@ -3,8 +3,14 @@ jobs:
   include:
     - os: linux
       dist: trusty
-    - os: osx
-      osx_image: xcode10.3
+#    - os: osx
+#      osx_image: xcode10.3
+
+addons:
+  apt:
+    packages:
+    - p7zip-full
+
 env:
   global:
     - LOCAL_MODE=1
@@ -26,12 +32,13 @@ env:
 
 before_install:
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install openssl ; fi
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install p7zip ; fi
 
 script:
-  - echo $TRAVIS_OS_NAME
-#  - mkdir installers
-#  - export LOCAL_INSTALLER_DIR=$PWD/installers
-#  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then export TARGET_ENV=mac-clang-10.11-x64 ; fi
-#  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then IFW_OPENSSL_DIR=/usr/local/opt/openssl ; fi
-#  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then export TARGET_ENV=linux-g++ ; fi
-#  - python qtsdk/packaging-tools/build_wrapper.py -c ifw -l $LICENSE -b $BUILD_NUMBER -e $TARGET_ENV
+  - mkdir installers
+  - export LOCAL_INSTALLER_DIR=$PWD/installers
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then export TARGET_ENV=mac-clang-10.11-x64 ; fi
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then export IFW_OPENSSL_DIR=/usr/local/opt/openssl ; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then export TARGET_ENV=linux-g++ ; fi
+  - python qtsdk/packaging-tools/build_wrapper.py -c ifw -l $LICENSE -b $BUILD_NUMBER -e $TARGET_ENV
+
