@@ -10,6 +10,8 @@ addons:
   apt:
     packages:
     - p7zip-full
+  ssh_known_hosts:
+    - 127.0.0.1
 
 env:
   global:
