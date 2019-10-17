@@ -42,5 +42,6 @@ script:
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then export TARGET_ENV=mac-clang-10.11-x64 ; fi
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then export IFW_OPENSSL_DIR=/usr/local/opt/openssl ; fi
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then export TARGET_ENV=linux-g++ ; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then export IFW_STATIC_QT_BIN_PKG=$PWD/static-qt-linux.7z ; fi
   - python qtsdk/packaging-tools/build_wrapper.py -c ifw -l $LICENSE -b $BUILD_NUMBER -e $TARGET_ENV
 
