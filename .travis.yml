@@ -21,7 +21,7 @@ env:
     - VERSION=v5.13.1-victron
     - IFW_GIT_URL=https://github.com/qtproject/installer-framework.git
     - IFW_GIT_VERSION=3.1
-    - IFW_QT_SRC_PKG=http://download.qt.io/official_releases/qt/5.12/5.12.5/single/qt-everywhere-opensource-src-5.12.5.tar.xz
+    - IFW_QT_SRC_PKG=http://download.qt.io/official_releases/qt/5.12/5.12.5/single/qt-everywhere-src-5.12.5.tar.xz
     - IFW_STATIC_QT_BIN_PKG=
     - IFW_DYNAMIC_QT_BIN_PKG=
     - ENABLE_TESTS=false
