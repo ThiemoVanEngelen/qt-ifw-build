@@ -2,7 +2,7 @@ language: generic
 jobs:
   include:
     - os: linux
-      dist: trusty
+      dist: bionic
 #    - os: osx
 #      osx_image: xcode10.3
 
